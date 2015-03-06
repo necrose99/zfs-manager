@@ -1,40 +1,55 @@
-</li>
-<li class="item odd last">
-[![Icon][]][]
+<div id="project-header" style="margin: 0px 0px 10px; padding: 0px;
+border: 0px; outline: 0px; font-size: 13px; vertical-align:
+baseline; width: auto; display: block; float: none; color: rgb(85,
+85, 85); font-family: sans-serif; font-style: normal;
+font-variant: normal; font-weight: normal; letter-spacing: normal;
+line-height: 18px; orphans: auto; text-align: start; text-indent:
+0px; text-transform: none; white-space: normal; widows: auto;
+word-spacing: 0px; -webkit-text-stroke-width: 0px; background:
+rgb(255, 255, 255);">
 
-[ZFS Administration/Replication Tool][]
-A Windows GUI for monitoring ZFS filesystems and replication
+<section id="project-title" style="margin: 0px; padding: 0px;
+border: 0px; outline: 0px; font-size: 13px; vertical-align:
+baseline; display: block; height: auto; background:
+transparent;">
+ZFS Manager {itemprop="name" style="margin: 0px; padding: 0px; border:
+0px; outline: 0px; font-size: 32px; vertical-align: baseline;
+font-weight: bold; text-rendering: optimizelegibility;
+font-family: Ubuntu, sans-serif; line-height: 1em; display:
+inline; background: transparent;"}
+===========
 
-</li>
-</ul>
-</aside>
-<script type="text/javascript" src="//gdc.indeed.com/ads/apiresults.js"></script>
-<aside class="sidebar-widget jobs-widget">
-<header>
-### <span id="itjb_at">[jobs][] by <span id="itjb-logo-container">[ITJB][jobs]</span></span> <span id="indeed_at">[jobs][1] by [![Indeed job search][]][]</span> <span id="dice_at"> Powered by [![Dice Logo][]][] </span> Latest Tech Jobs
+ZFS Manager is a menu driven utility for managing ZFS Filesystems {style="margin: 0px 0px 4px; padding: 0px; border: 0px;
+outline: 0px; font-size: 16px; vertical-align: baseline;
+font-weight: normal; text-rendering: optimizelegibility;
+font-family: Ubuntu, sans-serif; line-height: 1em; background:
+transparent;"}
+-----------------------------------------------------------------
 
-</header>
-<section>
-<form action="/jobs/" method="get" id="job-search">
-<input type="hidden" name="source" value="widget"> <input type="text" name="text" placeholder="Senior Java Developer (Job Title)" id="job-title" value> <input type="submit" name="submit" value="Find" id="job-search-button">
+Brought to you by:<span class="Apple-converted-space"> </span>[<span
+itemprop="name" style="margin: 0px;
+padding: 0px; border: 0px; outline: 0px; font-size: 12px;
+vertical-align: baseline; background: transparent;">edkitconsulting</span>][]
 
-</form>
 </section>
--   <span class="job-link">[Loading…][]</span> <span class="job-details">The latest tech jobs.</span>
 
-<section class="all-jobs" style="border: none;">
-[See All Jobs ››][Loading…]
+</div>
 
-</section>
-</aside>
+<article id="project" class="content-wrapper" itemscope itemtype="http://schema.org/SoftwareApplication" style="margin:
+0px auto; padding: 0px 0px 10px; border: 1px solid rgb(204, 204,
+204); outline: 0px; font-size: 13px; vertical-align: baseline;
+display: block; border-radius: 4px; width: 960px; color: rgb(85,
+85, 85); font-family: sans-serif; font-style: normal;
+font-variant: normal; font-weight: normal; letter-spacing: normal;
+line-height: 18px; orphans: auto; text-align: start; text-indent:
+0px; text-transform: none; white-space: normal; widows: auto;
+word-spacing: 0px; -webkit-text-stroke-width: 0px; background:
+rgb(245, 245, 245);">
+<nav style="margin: 0px 0px 14px; padding: 0px; border: 0px;
+outline: 0px; font-size: 13px; vertical-align: baseline;
+display">
 
-  [Icon]: //a.fsdn.com/con/img/project_default.png
-  [![Icon][]]: /projects/windowszfsadmin/ "ZFS Administration/Replication Tool"
-  [ZFS Administration/Replication Tool]: /projects/windowszfsadmin/ "Learn more about ZFS Administration/Replication Tool "
-  [jobs]: http://www.theitjobboard.co.uk/
-  [1]: http://www.indeed.com/
-  [Indeed job search]: //a.fsdn.com/con/img/jobs/indeed_logo.gif
-  [![Indeed job search][]]: http://www.indeed.com/ "Job Search"
-  [Dice Logo]: //a.fsdn.com/con/img/jobs/dice_logo.png
-  [![Dice Logo][]]: http://www.dice.com/?CMPID=AF_SF_UP_JS_AV_OG_BN_&utm_source=SourceForge&utm_medium=Affiliate&utm_content=&utm_campaign=Advocacy_Ongoing
-  [Loading…]: /jobs?source=widget
+  [<span itemprop="name" style="margin: 0px;
+  padding: 0px; border: 0px; outline: 0px; font-size: 12px;
+  vertical-align: baseline; background: transparent;">edkitconsulting</span>]:
+    https://sourceforge.net/u/edkitconsulting/
