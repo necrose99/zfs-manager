@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Zfs-manager by necrose99</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Zfs-manager</h1>
+        <h2></h2>
+
+        <section id="downloads">
+          <a href="https://github.com/necrose99/zfs-manager/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/necrose99/zfs-manager/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/necrose99/zfs-manager" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <p>!doctype html&gt;</p>
+
+
+
+
+
+
+
+
+
+
+
+<p>&lt;!--[if (gt IE 9)|!(IE)]&gt;--&gt;  &lt;!--&lt;![endif]--&gt;
+    </p>
+        
+
+<pre><code>    &lt;meta id="webtracker" name="webtracker" content='{"user_id": 1653228, "event_id": "9166d840-c43f-11e4-8ddf-0200ac1d1d9f", "clicker": 0.08595790340961344, "project": "zfsmanager", "non_clicker": 0.9154368050260697, "active_tests": ["psp_redirect_immersion"]}'&gt;
+&lt;meta name="description" content="Download ZFS Manager. ZFS Manager is a menu driven utility for managing ZFS Filesystems" /&gt;
+</code></pre>
+
+<p>
+
+
+
+
+</p>
+
+<pre><code>    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;ZFS Manager | SourceForge.net&lt;/title&gt;
+    &lt;link rel="shortcut icon" href="//a.fsdn.com/con/img/sftheme/favicon.ico"&gt;
+    &lt;script type="text/javascript"&gt;
+        /*global unescape, window, console, jQuery, $, net, SF, COMSCORE, DD_belatedPNG, ga */
+        // Setup our namespace
+        if (!window.SF) { window.SF = {}; }
+        if (!window.net) { window.net = {}; }
+        if (!window.net.sf) { window.net.sf = {}; }
+        SF.Ads = {};
+        SF.cdn = '//a.fsdn.com/con';
+        SF.deploy_time = '1425581804';
+    &lt;/script&gt;
+    &lt;script src="//a.fsdn.com/con/js/min/sf.head.js?1425581804" type="text/javascript"&gt;&lt;/script&gt;
+</code></pre>
+
+
+
+<p></p>
+
+
+    @font-face {
+        font-family: "Pictos";
+        src: url('//a.fsdn.com/con/css/fonts/sftheme/pictos-web.eot');
+        src: local("?"), url('//a.fsdn.com/con/css/fonts/sftheme/pictos-web.woff') format('woff'), url('//a.fsdn.com/con/css/fonts/sftheme/pictos-web.ttf') format('truetype'), url('//a.fsdn.com/con/css/fonts/sftheme/pictos-web.svg') format('svg');
+    }
+
+
+<p></p>
+
+<pre><code>&lt;style type="text/css" &gt;.sfdl { width:250px;height:48px;padding:0;position:relative;font:bold 12px/1.17 sans-serif !important; border:1px solid #aaa;display:inline;float:left;text-decoration:none;-moz-box-shadow:rgba(255, 255, 255, 0.6) 0 1px 0 0;-webkit-box-shadow:rgba(255, 255, 255, 0.6) 0 1px 0 0;-o-box-shadow:rgba(255, 255, 255, 0.6) 0 1px 0 0;box-shadow:rgba(255, 255, 255, 0.6) 0 1px 0 0;-moz-border-radius:4px;-webkit-border-radius:4px;-o-border-radius:4px;-ms-border-radius:4px;-khtml-border-radius:4px;border-radius:4px;background:no-repeat #e5e5e5 8px center url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAANCAYAAABPeYUaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAANFJREFUeNqcUosNgjAUbE0HcARGwAnqZxBxBCbQDXQE2UOkTIAj4AZsgPfMa1JeGqhecimU63HvvepxHFUq6mebY2nAdbi/Ur/hKg0IRv2H3WFvnX/Rj9qRcxH7A+BIjDK2eCYewQy8g2/WDJSk4w8xWDICz2ziUchyvMGLXIVJK9acE0+0VM53PIitE6bTcKJJT0wg6ESSHiwhHpbMDYszjhrDKcVkE5mO5dhZyrwNx72J2i9iGvMmODB372U/aCpV2NSlG0sGVbiBw2VM+BFgALYfPdL6UCEWAAAAAElFTkSuQmCC);background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAANCAYAAABPeYUaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAANFJREFUeNqcUosNgjAUbE0HcARGwAnqZxBxBCbQDXQE2UOkTIAj4AZsgPfMa1JeGqhecimU63HvvepxHFUq6mebY2nAdbi/Ur/hKg0IRv2H3WFvnX/Rj9qRcxH7A+BIjDK2eCYewQy8g2/WDJSk4w8xWDICz2ziUchyvMGLXIVJK9acE0+0VM53PIitE6bTcKJJT0wg6ESSHiwhHpbMDYszjhrDKcVkE5mO5dhZyrwNx72J2i9iGvMmODB372U/aCpV2NSlG0sGVbiBw2VM+BFgALYfPdL6UCEWAAAAAElFTkSuQmCC), -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #fff), color-stop(100%, #ccc));background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAANCAYAAABPeYUaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAANFJREFUeNqcUosNgjAUbE0HcARGwAnqZxBxBCbQDXQE2UOkTIAj4AZsgPfMa1JeGqhecimU63HvvepxHFUq6mebY2nAdbi/Ur/hKg0IRv2H3WFvnX/Rj9qRcxH7A+BIjDK2eCYewQy8g2/WDJSk4w8xWDICz2ziUchyvMGLXIVJK9acE0+0VM53PIitE6bTcKJJT0wg6ESSHiwhHpbMDYszjhrDKcVkE5mO5dhZyrwNx72J2i9iGvMmODB372U/aCpV2NSlG0sGVbiBw2VM+BFgALYfPdL6UCEWAAAAAElFTkSuQmCC), -moz-linear-gradient(top, #fff 0%, #ccc 100%);background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAANCAYAAABPeYUaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAANFJREFUeNqcUosNgjAUbE0HcARGwAnqZxBxBCbQDXQE2UOkTIAj4AZsgPfMa1JeGqhecimU63HvvepxHFUq6mebY2nAdbi/Ur/hKg0IRv2H3WFvnX/Rj9qRcxH7A+BIjDK2eCYewQy8g2/WDJSk4w8xWDICz2ziUchyvMGLXIVJK9acE0+0VM53PIitE6bTcKJJT0wg6ESSHiwhHpbMDYszjhrDKcVkE5mO5dhZyrwNx72J2i9iGvMmODB372U/aCpV2NSlG0sGVbiBw2VM+BFgALYfPdL6UCEWAAAAAElFTkSuQmCC), linear-gradient(top, #fff 0%, #ccc 100%);background-position:8px center, 0 0;margin:0 10px 0px 0;overflow:hidden;color:#555 !important;}.sfdl:hover { cursor:pointer;text-decoration:none;background:8px center no-repeat #eee url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAANCAYAAABPeYUaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAANFJREFUeNqcUosNgjAUbE0HcARGwAnqZxBxBCbQDXQE2UOkTIAj4AZsgPfMa1JeGqhecimU63HvvepxHFUq6mebY2nAdbi/Ur/hKg0IRv2H3WFvnX/Rj9qRcxH7A+BIjDK2eCYewQy8g2/WDJSk4w8xWDICz2ziUchyvMGLXIVJK9acE0+0VM53PIitE6bTcKJJT0wg6ESSHiwhHpbMDYszjhrDKcVkE5mO5dhZyrwNx72J2i9iGvMmODB372U/aCpV2NSlG0sGVbiBw2VM+BFgALYfPdL6UCEWAAAAAElFTkSuQmCC);}.sfdl-lite { background:0 center no-repeat #337733 none;color:white !important;height:auto;padding:0.5em 1em;text-align:center;-moz-border-radius:4px;-webkit-border-radius:4px;-o-border-radius:4px;-ms-border-radius:4px;-khtml-border-radius:4px;border-radius:4px;background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #339933), color-stop(100%, #337733));background-image:-moz-linear-gradient(top, #339933 0%, #337733 100%);background-image:linear-gradient(top, #339933 0%, #337733 100%);}.sfdl-lite:hover { background:0 center no-repeat #339933;}.sfdl span { border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;display:block;margin:3px;margin-left:35px;padding:4px;text-align:left;color:#FFF;background:#363;background-image:-moz-linear-gradient(center top, #393 0%, #373 100%);background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #393),color-stop(1, #373));background-image:linear-gradient(top, #393 0%, #373 100%);overflow:hidden;height:34px;}.sfdl b { display:block;line-height:17.0px;}.sfdl small { display:block;line-height:17.0px;color:#ADC2AD; font-weight:normal;white-space:nowrap;overflow:hidden;font-size:77%;}.info-circle{ right:10px;bottom:16px;}.direct-dl{ font-size:10px;text-align:right;display:inline-block;width:100%;}&lt;/style&gt;
+</code></pre>
+
+
+    .qd8107eced6a4cb67f8d55ff598c6ea2e1dce0622 { display: none !important; }
+
+
+<pre><code>&lt;link rel="alternate" type="application/rss+xml" title="ZFS Manager&amp;#8230;File Releases" href="/projects/zfsmanager/rss?path=/" /&gt;
+&lt;link rel="canonical" href="https://sourceforge.net/projects/zfsmanager/"&gt;
+</code></pre>
+
+
+        
+
+<p></p>
+
+<p>(function() {
+         var useSSL = 'https:' === document.location.protocol;
+         var src = (useSSL ? 'https:' : 'http:') +
+               '//www.googletagservices.com/tag/js/gpt.js';
+         document.write('');
+   })();
+   </p>
+
+<p>&lt;!-- GPT Slot Definitions --&gt;
+   </p>
+
+<pre><code>    &lt;script type="text/javascript" src="//a.fsdn.com/con/js/adframe.js?1425581804"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+
+        /*jshint ignore:start*/
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        /*jshint ignore:end*/
+
+        //var $ = jQuery.noConflict(); // jshint ignore:line
+    &lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+            ga('create', 'UA-36130941-1', {'name': '1'});
+            ga('set', 'userid', '1653228');
+            ga('create', 'UA-36130941-1', 'auto');
+            ga('send', 'pageview', {'title': '1'} );
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body id="pg_project" class="bluesteel user"&gt;
+
+    &lt;div id="busy-spinner"&gt;&lt;/div&gt;
+</code></pre>
+
+<p> 
+    </p><div>
+        <a href="/">
+            SourceForge
+        </a>
+        
+            
+        
+        &lt;!--Switch to {language}--&gt;
+         
+            <a href="/directory/" title="Browse our software.">Browse</a>
+            <a href="/directory/enterprise" title="Browse our Enterprise software.">Enterprise</a>
+            <a href="/blog/" title="Read the latest news from the SF HQ.">Blog</a>
+            <a href="/support" title="Contact us for help and feedback.">Help</a>
+            <a href="/jobs?source=header" title="Search 80k+ tech jobs.">Jobs</a>
+         
+         
+
+<pre><code>        &lt;div id="account-tooltip" class="tooltip-container"&gt;
+            &lt;a href="/users/wolfstar359"&gt;
+                &lt;img src="https://secure.gravatar.com/avatar/868448f7851a94ec271b8534cb3072f1?s=24&amp;amp;d=%2F%2Fa.fsdn.com%2Fcon%2Fimg%2Fsf-profile-blank.png" alt="Avatar"/&gt;
+                Me &amp;#x25BE;
+            &lt;/a&gt;
+            &lt;div class="tooltip account"&gt;
+                &lt;div class="diamond"&gt;&lt;/div&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;
+                        &lt;img src="https://secure.gravatar.com/avatar/868448f7851a94ec271b8534cb3072f1?s=24&amp;amp;d=%2F%2Fa.fsdn.com%2Fcon%2Fimg%2Fsf-profile-blank.png" alt="Avatar"/&gt;
+                        &lt;a href="/users/wolfstar359"&gt;Profile&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;b data-icon="U" class="ico ico-user" title="Account"&gt;&lt;/b&gt;
+                        &lt;a href="/auth/preferences/"&gt;Account Settings&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;b data-icon="Q" class="ico ico-power" title="Log Out"&gt;&lt;/b&gt;
+                        &lt;a href="/auth/logout"&gt;Log Out&lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div id="updater-tooltip" class="tooltip-container"&gt;
+</code></pre>
+
+<p><a href="/user/updates" title="Manage Update Notifications">37</a></p>
+
+<div>
+    <h6>
+<a id="available-updates" class="anchor" href="#available-updates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Available Updates</h6>
+    <div></div>
+    <ul>
+        <li>The following software titles have updates:</li>
+    
+        <li>
+            
+            <a href="/projects/scriptechocolor/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/scriptechocolor/icon"></a>
+            <a title="Script Echo Color" href="/projects/scriptechocolor/?source=updater">Script Echo Color</a>
+            <a href="/projects/scriptechocolor/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/qt4-fsarchiver/?source=updater"><img alt="Icon" src="//a.fsdn.com/con/img/project_default.png"></a>
+            <a title="qt4-fsarchiver" href="/projects/qt4-fsarchiver/?source=updater">qt4-fsarchiver</a>
+            <a href="/projects/qt4-fsarchiver/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/spikepentesting/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/spikepentesting/icon"></a>
+            <a title="Spike-pentesting" href="/projects/spikepentesting/?source=updater">Spike-pentesting</a>
+            <a href="/projects/spikepentesting/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/inkscape/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/inkscape/icon"></a>
+            <a title="Inkscape" href="/projects/inkscape/?source=updater">Inkscape</a>
+            <a href="/projects/inkscape/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/phpvirtualbox/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/phpvirtualbox/icon"></a>
+            <a title="phpVirtualBox" href="/projects/phpvirtualbox/?source=updater">phpVirtualBox</a>
+            <a href="/projects/phpvirtualbox/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/editorconfig/?source=updater"><img alt="Icon" src="//a.fsdn.com/con/img/project_default.png"></a>
+            <a title="EditorConfig" href="/projects/editorconfig/?source=updater">EditorConfig</a>
+            <a href="/projects/editorconfig/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/kickassundelete/?source=updater"><img alt="Icon" src="//a.fsdn.com/con/img/project_default.png"></a>
+            <a title="Kickass Undelete" href="/projects/kickassundelete/?source=updater">Kickass Undelete</a>
+            <a href="/projects/kickassundelete/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/wxpython/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/wxpython/icon"></a>
+            <a title="wxPython" href="/projects/wxpython/?source=updater">wxPython</a>
+            <a href="/projects/wxpython/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/wxwindows/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/wxwindows/icon"></a>
+            <a title="wxWidgets" href="/projects/wxwindows/?source=updater">wxWidgets</a>
+            <a href="/projects/wxwindows/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/translate/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/translate/icon"></a>
+            <a title="Pootle, Virtaal &amp; Translate Toolkit" href="/projects/translate/?source=updater">Pootle, Virtaal &amp; ...</a>
+            <a href="/projects/translate/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/aoo-extensions/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/aoo-extensions/icon"></a>
+            <a title="Apache OpenOffice Extensions" href="/projects/aoo-extensions/?source=updater">Apache OpenOffice ...</a>
+            <a href="/projects/aoo-extensions/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/aoo-templates/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/aoo-templates/icon"></a>
+            <a title="Apache OpenOffice Templates" href="/projects/aoo-templates/?source=updater">Apache OpenOffice ...</a>
+            <a href="/projects/aoo-templates/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/ajaxplorer/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/ajaxplorer/icon"></a>
+            <a title="Pydio" href="/projects/ajaxplorer/?source=updater">Pydio</a>
+            <a href="/projects/ajaxplorer/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/mumble/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/mumble/icon"></a>
+            <a title="Mumble" href="/projects/mumble/?source=updater">Mumble</a>
+            <a href="/projects/mumble/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/sevenzip/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/sevenzip/icon"></a>
+            <a title="7-Zip" href="/projects/sevenzip/?source=updater">7-Zip</a>
+            <a href="/projects/sevenzip/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/librecad/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/librecad/icon"></a>
+            <a title="LibreCAD" href="/projects/librecad/?source=updater">LibreCAD</a>
+            <a href="/projects/librecad/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/vmpk/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/vmpk/icon"></a>
+            <a title="Virtual MIDI Piano Keyboard" href="/projects/vmpk/?source=updater">Virtual MIDI Piano ...</a>
+            <a href="/projects/vmpk/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/pcsm/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/pcsm/icon"></a>
+            <a title="Performance Maintainer" href="/projects/pcsm/?source=updater">Performance ...</a>
+            <a href="/projects/pcsm/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/win32diskimager/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/win32diskimager/icon"></a>
+            <a title="Win32 Disk Imager" href="/projects/win32diskimager/?source=updater">Win32 Disk Imager</a>
+            <a href="/projects/win32diskimager/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/mingw-w64/?source=updater"><img alt="Icon" src="//a.fsdn.com/con/img/project_default.png"></a>
+            <a title="MinGW-w64 - for 32 and 64 bit Windows" href="/projects/mingw-w64/?source=updater">MinGW-w64 - for 32 ...</a>
+            <a href="/projects/mingw-w64/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/pywin32/?source=updater"><img alt="Icon" src="//a.fsdn.com/con/img/project_default.png"></a>
+            <a title="Python for Windows Extensions" href="/projects/pywin32/?source=updater">Python for Windows ...</a>
+            <a href="/projects/pywin32/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/cx-freeze/?source=updater"><img alt="Icon" src="//a.fsdn.com/con/img/project_default.png"></a>
+            <a title="cx_Freeze" href="/projects/cx-freeze/?source=updater">cx_Freeze</a>
+            <a href="/projects/cx-freeze/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/scipy/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/scipy/icon"></a>
+            <a title="SciPy: Scientific Library for Python" href="/projects/scipy/?source=updater">SciPy: Scientific ...</a>
+            <a href="/projects/scipy/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/numpy/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/numpy/icon"></a>
+            <a title="Numerical Python" href="/projects/numpy/?source=updater">Numerical Python</a>
+            <a href="/projects/numpy/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/pyqt/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/pyqt/icon"></a>
+            <a title="PyQt" href="/projects/pyqt/?source=updater">PyQt</a>
+            <a href="/projects/pyqt/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/handbrake/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/handbrake/icon"></a>
+            <a title="HandBrake" href="/projects/handbrake/?source=updater">HandBrake</a>
+            <a href="/projects/handbrake/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/camstudio/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/camstudio/icon"></a>
+            <a title="CamStudio - Screen Recorder" href="/projects/camstudio/?source=updater">CamStudio - Screen ...</a>
+            <a href="/projects/camstudio/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/cloverefiboot/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/cloverefiboot/icon"></a>
+            <a title="Clover EFI bootloader" href="/projects/cloverefiboot/?source=updater">Clover EFI ...</a>
+            <a href="/projects/cloverefiboot/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/posadis/?source=updater"><img alt="Icon" src="//a.fsdn.com/con/img/project_default.png"></a>
+            <a title="Posadis DNS Server" href="/projects/posadis/?source=updater">Posadis DNS Server</a>
+            <a href="/projects/posadis/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/reactos/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/reactos/icon"></a>
+            <a title="ReactOS" href="/projects/reactos/?source=updater">ReactOS</a>
+            <a href="/projects/reactos/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/phpmumbleadmin/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/phpmumbleadmin/icon"></a>
+            <a title="phpMumbleAdmin" href="/projects/phpmumbleadmin/?source=updater">phpMumbleAdmin</a>
+            <a href="/projects/phpmumbleadmin/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/bitcoin/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/bitcoin/icon"></a>
+            <a title="Bitcoin" href="/projects/bitcoin/?source=updater">Bitcoin</a>
+            <a href="/projects/bitcoin/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/unetbootin/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/unetbootin/icon"></a>
+            <a title="UNetbootin" href="/projects/unetbootin/?source=updater">UNetbootin</a>
+            <a href="/projects/unetbootin/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/clamwin/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/clamwin/icon"></a>
+            <a title="ClamWin" href="/projects/clamwin/?source=updater">ClamWin</a>
+            <a href="/projects/clamwin/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/ultradefrag/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/ultradefrag/icon"></a>
+            <a title="UltraDefrag" href="/projects/ultradefrag/?source=updater">UltraDefrag</a>
+            <a href="/projects/ultradefrag/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/vlc/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/vlc/icon"></a>
+            <a title="VLC media player" href="/projects/vlc/?source=updater">VLC media player</a>
+            <a href="/projects/vlc/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li>
+            
+            <a href="/projects/espeak/?source=updater"><img alt="Icon" src="//a.fsdn.com/allura/p/espeak/icon"></a>
+            <a title="eSpeak: speech synthesis" href="/projects/espeak/?source=updater">eSpeak: speech ...</a>
+            <a href="/projects/espeak/files/latest/download?source=updater"></a>
+        </li>
+    
+        <li><a href="/user/updates">Manage Subscriptions</a></li>
+    </ul>
+</div>
+
+<pre><code>        &lt;/div&gt;
+
+    &lt;/nav&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>
+ 
+    </p>
+<div>
+         
+            <h4>
+<a id="solution-centers" class="anchor" href="#solution-centers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solution Centers</h4>
+            <a href="http://goparallel.sourceforge.net/">Go Parallel</a>
+            <a href="http://apmsolutions.sourceforge.net/">Performance Central</a>
+         
+         
+
+<pre><code>        &lt;a href="http://library.slashdotmedia.com/?source=sfnet_header"&gt;Resources&lt;/a&gt;
+
+
+    &lt;/nav&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p></p>
+
+<pre><code>    &lt;div id="messages"&gt;
+    &lt;/div&gt;
+
+    &lt;div id="page-body"&gt;&lt;nav id="breadcrumbs"&gt;
+&lt;ul&gt;
+    &lt;li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"&gt;&lt;a itemprop="url" href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"&gt;&lt;a itemprop="url" href="/directory"&gt;Browse&lt;/a&gt;&lt;/li&gt;&lt;li class="project"&gt;ZFS Manager&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p></p> 
+
+<div id="project-header">
+    
+ 
+    <h1 itemprop="name">
+<a id="------------zfs-manager" class="anchor" href="#------------zfs-manager" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+            ZFS Manager</h1>
+    <h2>
+<a id="--------zfs-manager-is-a-menu-driven-utility-for-managing-zfs-filesystems----" class="anchor" href="#--------zfs-manager-is-a-menu-driven-utility-for-managing-zfs-filesystems----" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        ZFS Manager is a menu driven utility for managing ZFS Filesystems
+    </h2>
+    <p id="maintainers" itemprop="author">
+    Brought to you by:
+    <a href="/u/edkitconsulting/" itemprop="url">edkitconsulting</a></p>
+    
+ 
+</div>
+
+<p> 
+    
+      </p>
+
+<pre><code>&lt;div class="firstwave"&gt;
+    &lt;ul class="b-hornav"&gt;
+
+        &lt;li id="menu_consume_summary" class="selected"&gt;
+            &lt;a href="/projects/zfsmanager/?source=navbar"
+            &gt;&lt;span&gt;Summary&lt;/span&gt;&lt;/a&gt;
+
+        &lt;/li&gt;
+
+        &lt;li id="menu_consume_files" &gt;
+            &lt;a href="/projects/zfsmanager/files/?source=navbar"
+            &gt;&lt;span&gt;Files&lt;/span&gt;&lt;/a&gt;
+
+        &lt;/li&gt;
+
+        &lt;li id="menu_consume_reviews" &gt;
+            &lt;a href="/projects/zfsmanager/reviews?source=navbar"
+            &gt;&lt;span&gt;Reviews&lt;/span&gt;&lt;/a&gt;
+
+        &lt;/li&gt;
+
+        &lt;li id="menu_consume_support" &gt;
+            &lt;a href="/projects/zfsmanager/support?source=navbar"
+            &gt;&lt;span&gt;Support&lt;/span&gt;&lt;/a&gt;
+
+        &lt;/li&gt;
+
+        &lt;li id="menu_consume_wiki" &gt;
+            &lt;a href="/p/zfsmanager/wiki/?source=navbar"
+            &gt;&lt;span&gt;Wiki&lt;/span&gt;&lt;/a&gt;
+
+        &lt;/li&gt;
+
+        &lt;li id="menu_consume_code" &gt;
+            &lt;a href="/p/zfsmanager/code/?source=navbar"
+            &gt;&lt;span&gt;Code&lt;/span&gt;&lt;/a&gt;
+
+        &lt;/li&gt;
+
+        &lt;li id="menu_consume_tickets" &gt;
+            &lt;a href="/p/zfsmanager/tickets/?source=navbar"
+            &gt;&lt;span&gt;Tickets&lt;/span&gt;&lt;/a&gt;
+
+        &lt;/li&gt;
+
+        &lt;li id="menu_consume_discussion" &gt;
+            &lt;a href="/p/zfsmanager/discussion/?source=navbar"
+            &gt;&lt;span&gt;Discussion&lt;/span&gt;&lt;/a&gt;
+
+        &lt;/li&gt;
+
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;/nav&gt;
+
+&lt;div id="browser-warning-placeholder"&gt;&lt;/div&gt;
+
+
+&lt;section id="main-content"&gt;
+    &lt;section id="call-to-action"&gt;
+
+        &lt;section id="counts-sharing"&gt;
+            &lt;section class="project-info"&gt;
+                &lt;section class="content"&gt;
+                    &lt;b data-icon="" class="ico" title="Star"&gt;&amp;#9733;&lt;/b&gt;
+                    &lt;a href="/projects/zfsmanager/reviews/" title="Add a review" id="call-to-action-reviews"&gt;Add a Review&lt;/a&gt;
+                &lt;/section&gt;
+            &lt;/section&gt;
+            &lt;section id="download-stats" class="project-info"&gt;
+                &lt;section class="content"&gt;
+                    &lt;b data-icon="}" class="ico ico-downarrow" title="Down"&gt;&lt;/b&gt;
+                    &lt;a href="/projects/zfsmanager/files/stats/timeline" title="Downloads This Week" id="call-to-action-stats"&gt;7 Downloads&lt;/a&gt;
+                    &lt;span&gt;(This Week)&lt;/span&gt;
+                &lt;/section&gt;
+            &lt;/section&gt;
+            &lt;section id="last-updated" class="project-info"&gt;
+                &lt;section class="content"&gt;
+                    &lt;b data-icon="\" class="ico ico-calendar" title="Last Update"&gt;&lt;/b&gt;
+                    Last Update:
+                    &lt;time class="dateUpdated" datetime="2014-10-26"&gt;2014-10-26&lt;/time&gt;
+                &lt;/section&gt;
+            &lt;/section&gt;
+</code></pre>
+
+<p> 
+    &lt;!-- Twitter --&gt;
+    
+    <a href="https://twitter.com/share"></a>
+    &lt;!-- Google +1 --&gt;
+     </p>
+
+<pre><code>&lt;div class="g-plusone"
+     data-size="medium"
+     data-annotation="bubble"
+     data-href="http://sourceforge.net/projects/zfsmanager/"&gt;&lt;/div&gt;
+&lt;!-- Facebook --&gt;
+&lt;iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fzfsmanager%2F&amp;amp;send=false&amp;amp;layout=button_count&amp;amp;width=80&amp;amp;show_faces=false&amp;amp;action=like&amp;amp;colorscheme=light&amp;amp;font&amp;amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"&gt;&lt;/iframe&gt;
+</code></pre>
+
+<p></p>
+
+<pre><code>        &lt;/section&gt;
+
+        &lt;section id="download_button"&gt;
+            &lt;a href="/p/zfsmanager/code/" title="Browse Code" class="sfbc"&gt;
+&lt;span&gt;&amp;nbsp;&lt;/span&gt;
+&lt;b&gt;Browse Code&lt;/b&gt;
+&lt;em title="Code Repositories"&gt;Git Repository&lt;/em&gt;
+</code></pre>
+
+<p>
+            
+        </p>
+
+<pre><code>    &lt;section id="project-screenshots"&gt;
+        &lt;header&gt;
+            &lt;h2&gt;Screenshots&lt;/h2&gt;
+        &lt;/header&gt;
+        &lt;div class="slider"&gt;
+            &lt;div class="strip"&gt;
+                &lt;a rel="section" class="thumbnail fancybox" href="//a.fsdn.com/con/app/proj/zfsmanager/screenshots/zfsman.png"&gt;
+                    &lt;img itemprop="screenshot" src="//a.fsdn.com/con/app/proj/zfsmanager/screenshots/zfsman.png/182/137" width="182" height="137" /&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section id="project-description"&gt;
+        &lt;header&gt;
+            &lt;h2&gt;Description&lt;/h2&gt;
+        &lt;/header&gt;
+        &lt;p id="description" itemprop="description"&gt;ZFS Manager is a menu driven utility for managing ZFS Filesystems written in python. Features include:  &lt;br&gt;
+</code></pre>
+
+<p><br>
+Creating/Deleting/Managing ZPOOLs<br>
+Creating/Deleting/Managing Datasets<br>
+Creating/Deleting/Managing Snapshots<br>
+Creating/Removing ZILs/Cache Drives<br>
+Managing ZFS Options (compression, NFS)<br>
+Creating/Deleting/Managing ZFS Filesystems<br>
+<br>
+Future Features:<br>
+<br>
+ZFS Replication<br>
+<br>
+Requirements: Python 2.x, ZFS Filesystem<br>
+<br>
+Obligatory Warning: I am not responsible for lost/corrupted data due to the usage of this product.</p>
+            <p>
+            <a id="homepage" href="http://zfsmanager.sourceforge.net" title="ZFS Manager Web Site">ZFS Manager Web Site</a>
+            </p>
+        
+
+<pre><code>    &lt;section id="project-categories-and-license"&gt;
+        &lt;div class="project-container"&gt;
+            &lt;section&gt;
+                &lt;header&gt;
+                    &lt;h4&gt;Categories&lt;/h4&gt;
+                &lt;/header&gt;&lt;/section&gt;
+            &lt;section&gt;
+
+
+            &lt;/section&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+
+
+  &lt;div class="psp_newsletter_subscribe"&gt;
+      &lt;h3&gt;KEEP ME UPDATED&lt;/h3&gt;
+    &lt;span class="subscribe-tagline"&gt;Get project updates, sponsored content
+        from our select &lt;br&gt;partners, and more.
+    &lt;/span&gt;
+</code></pre>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <div>
+        By clicking on "Follow" below, you are agreeing to the <a href="http://slashdotmedia.com/terms-of-use/">Terms of Use</a> and the <a href="http://slashdotmedia.com/privacy-statement/">Privacy Policy</a>.
+    </div>
+
+    
+        
+    
+
+    <p> Sent to <code>michaellonewolf359@gmail.com</code>.
+        
+            <a href="/auth/preferences/">(change)</a>
+        
+    </p>
+
+    
+        
+            Follow
+        
+    
+
+    
+    
+    
+    <p>You seem to have CSS turned off. Please don't fill out this field.</p>
+    <p>You seem to have CSS turned off. Please don't fill out this field.</p>
+
+
+<pre><code>      &lt;/div&gt;
+
+    &lt;section id="reviews-n-ratings"&gt;
+        &lt;header&gt;
+            &lt;a class="pspbtn" href="/projects/zfsmanager/reviews/new"&gt;Write a Review&lt;/a&gt;
+            &lt;h2&gt;User Reviews&lt;/h2&gt;
+        &lt;/header&gt;
+        &lt;section class="content"&gt;
+                    &lt;p&gt;Be the first to &lt;a href="/projects/zfsmanager/reviews/new"&gt;post a review&lt;/a&gt; of ZFS Manager!&lt;/p&gt;
+        &lt;/section&gt;
+    &lt;/section&gt;
+
+    &lt;section id="project-additional-trove"&gt;
+        &lt;header&gt;
+            &lt;h2&gt;Additional Project Details&lt;/h2&gt;
+        &lt;/header&gt;
+        &lt;div class="project-container"&gt;
+
+
+
+
+
+
+
+
+            &lt;section class="project-info"&gt;
+                &lt;header&gt;
+                    &lt;h4&gt;Registered&lt;/h4&gt;
+                &lt;/header&gt;
+                &lt;section class="content"&gt;
+                    2014-10-26
+                &lt;/section&gt;
+            &lt;/section&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;&lt;/section&gt;
+
+&lt;section id="sidebar"&gt;
+</code></pre>
+
+<p> 
+     
+        </p>
+<h3>
+<a id="recommended-projects" class="anchor" href="#recommended-projects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Recommended Projects</h3>
+     
+    <ul></ul> 
+
+<pre><code>            &lt;li class="item odd"&gt;
+            &lt;a href="/projects/win32diskimager/" title="Win32 Disk Imager"&gt;&lt;img alt="Icon" src="//a.fsdn.com/allura/p/win32diskimager/icon" /&gt;&lt;/a&gt;
+            &lt;div class="pinfo-content recommended"&gt;
+            &lt;a class="project-name" href="/projects/win32diskimager/" title="Learn more about Win32 Disk Imager "&gt;Win32 Disk Imager&lt;/a&gt;
+            &lt;div class="summary"&gt;
+            A tool for writing images to USB sticks or SD/CF cards 
+            &lt;/div&gt;
+            &lt;/div&gt;
+
+        &lt;/li&gt;
+
+            &lt;li class="item even"&gt;
+            &lt;a href="/projects/opendkim/" title="opendkim"&gt;&lt;img alt="Icon" src="//a.fsdn.com/con/img/project_default.png" /&gt;&lt;/a&gt;
+            &lt;div class="pinfo-content recommended"&gt;
+            &lt;a class="project-name" href="/projects/opendkim/" title="Learn more about opendkim "&gt;opendkim&lt;/a&gt;
+            &lt;div class="summary"&gt;
+
+            &lt;/div&gt;
+            &lt;/div&gt;
+
+        &lt;/li&gt;
+
+            &lt;li class="item odd last"&gt;
+            &lt;a href="/projects/windowszfsadmin/" title="ZFS Administration/Replication Tool"&gt;&lt;img alt="Icon" src="//a.fsdn.com/con/img/project_default.png" /&gt;&lt;/a&gt;
+            &lt;div class="pinfo-content recommended"&gt;
+            &lt;a class="project-name" href="/projects/windowszfsadmin/" title="Learn more about ZFS Administration/Replication Tool "&gt;ZFS Administration/Replication Tool&lt;/a&gt;
+            &lt;div class="summary"&gt;
+            A Windows GUI for monitoring ZFS filesystems and replication
+            &lt;/div&gt;
+            &lt;/div&gt;
+
+        &lt;/li&gt;
+
+
+&lt;/ul&gt;
+</code></pre>
+
+<p></p>
+
+
+
+<p> 
+     
+        </p>
+<h3>
+<a id="------------jobs-by-itjb------------jobs-by-----------------------------powered-by------------------------------------------latest-tech-jobs--------" class="anchor" href="#------------jobs-by-itjb------------jobs-by-----------------------------powered-by------------------------------------------latest-tech-jobs--------" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+            <a href="http://www.theitjobboard.co.uk/">jobs</a> by <a id="itjb-logo-container" href="http://www.theitjobboard.co.uk/">ITJB</a>
+            <a href="http://www.indeed.com/">jobs</a> by <a href="http://www.indeed.com/" title="Job Search"><img src="//a.fsdn.com/con/img/jobs/indeed_logo.gif" alt="Indeed job search"></a>
+            
+                Powered by
+                <a href="http://www.dice.com/?CMPID=AF_SF_UP_JS_AV_OG_BN_&amp;utm_source=SourceForge&amp;utm_medium=Affiliate&amp;utm_content=&amp;utm_campaign=Advocacy_Ongoing"> <img src="//a.fsdn.com/con/img/jobs/dice_logo.png" alt="Dice Logo"> </a>
+            
+            Latest Tech Jobs
+        </h3>
+     
+     
+        
+            
+            
+            
+        
+     
+    <ul id="job-listing">
+        <li>
+            <a href="/jobs?source=widget">Loading...</a>
+            The latest tech jobs.
+        </li>
+   </ul>
+    
+        <a href="/jobs?source=widget">See All Jobs ››</a>
+     
+ 
+
+
+
+
+
+<p> </p>
+
+
+
+<pre><code>    &lt;a id="report-inappropriate" href="/projects/zfsmanager/report_inappropriate"&gt;Report inappropriate content&lt;/a&gt;
+&lt;/section&gt;
+</code></pre>
+
+<p>
+        </p>
+</div> 
+
+<p> 
+    </p>
+<div>
+         
+            <h5>
+<a id="sourceforge" class="anchor" href="#sourceforge" aria-hidden="true"><span class="octicon octicon-link"></span></a>SourceForge</h5>
+            <a href="/about">About</a>
+            <a href="/blog/category/sitestatus/">Site Status</a>
+            <a href="http://twitter.com/sfnet_ops">@sfnet_ops</a>
+
+<pre><code>    &lt;/nav&gt;
+    &lt;nav&gt;
+        &lt;h5&gt;Find and Develop Software&lt;/h5&gt;
+        &lt;a href="/create/"&gt;Create a Project&lt;/a&gt;
+        &lt;a href="/directory/"&gt;Software Directory&lt;/a&gt;
+        &lt;a href="/top"&gt;Top Downloaded Projects&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;nav&gt;
+        &lt;h5&gt;Community&lt;/h5&gt;
+        &lt;a href="/blog/"&gt;Blog&lt;/a&gt;
+        &lt;a href="http://twitter.com/sourceforge"&gt;@sourceforge&lt;/a&gt;
+        &lt;a href="/jobs?source=footer"&gt;Job Board&lt;/a&gt;
+        &lt;a href="http://library.slashdotmedia.com/?source=sfnet_footer"&gt;Resources&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;nav&gt;
+        &lt;h5&gt;Help&lt;/h5&gt;
+        &lt;a href="http://p.sf.net/sourceforge/docs"&gt;Site Documentation&lt;/a&gt;
+        &lt;a href="/support"&gt;Support Request&lt;/a&gt;
+        &lt;a href="http://p.sf.net/sourceforge/irc"&gt;Real-Time Support&lt;/a&gt;
+    &lt;/nav&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>
+ 
+    </p>
+<div>
+        <div id="copyright">
+            Copyright © 2015 Dice. All Rights Reserved.<br>
+            SourceForge is a <a href="http://www.diceholdingsinc.com/phoenix.zhtml?c=211152&amp;p=irol-landing">Dice Holdings, Inc.</a> service.
+        </div>
+         
+            <a href="http://slashdotmedia.com/terms-of-use/">Terms</a>
+            <a href="http://slashdotmedia.com/privacy-statement/">Privacy</a>
+            
+            <a href="http://slashdotmedia.com/opt-out-choices/">Opt Out Choices</a>
+
+<pre><code>        &lt;a href="http://slashdotmedia.com"&gt;Advertise&lt;/a&gt;
+        &lt;a href="http://sourceforge.jp/"&gt;SourceForge.JP&lt;/a&gt;
+        &lt;a href="http://ibmsoftwaredelivery.sourceforge.net/"&gt;Software Delivery&lt;/a&gt;
+    &lt;/nav&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>
+            </p>
+
+<pre><code>    &lt;!-- Begin comScore Tag --&gt;
+    &lt;script src="https://sb.scorecardresearch.com/beacon.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+        if (window.COMSCORE) {
+            COMSCORE.beacon({
+                c1: 2,
+                c2: 6035546,
+                c3: "",
+                c4: "",
+                c5: "",
+                c6: "",
+                c15: ""
+            });
+        }
+    &lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;img src="http://b.scorecardresearch.com/p?c1=2&amp;amp;c2=6035546&amp;amp;c3=&amp;amp;c4=&amp;amp;c5=&amp;amp;c6=&amp;amp;c15=&amp;amp;cj=1" alt="comScore2" /&gt;
+    &lt;/noscript&gt;
+    &lt;!-- End comScore Tag --&gt;
+</code></pre>
+
+
+
+<div id="screenshots-callout-content">
+    <a href="/p/zfsmanager/admin/screenshots">Screenshots can attract more users to your project.</a>
+</div>
+
+<div id="features-callout-content">
+    <a href="/projects/zfsmanager/edit">Features can attract more users to your project.</a>
+</div>
+
+
+
+<div id="icon-dialog" title="Change the project icon">
+    
+        
+        Upload a new icon
+        <div>
+            
+        </div>
+        <p>Icons must be PNG, GIF, or JPEG and less than 1 MiB in size.  They will be displayed as 48x48 images.</p>
+    
+</div>
+
+<pre><code>        &lt;script type="text/javascript" src="//consent-st.truste.com/get?name=notice.js&amp;amp;domain=slashdot.org&amp;amp;c=teconsent&amp;amp;text=true"&gt;&lt;/script&gt;
+</code></pre>
+
+
+
+<p>
+</p> </div>  </div>  </div> 
+      </section>
+    </div>
+
+    
+  </body>
+</html>
